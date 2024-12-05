@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+        <div class="formulario">
+            <form action="{{ url_for('novo_produto') }}" method="POST">
+                <label>Nome do Produto</label>
+                <input type="text" name="form_nome_produto">
+                <label>Preço do Produto</label>
+                <input type="text" name="form_preco_produto">
+                <label for="Categoria">Categoria:</label>
+                <select class="select" id="Categoria" name="form_id_categoria">
+                    <option value="">Não selecionado</option>
+                    {% for item in cavalo %}
+                        <option value="{{ item.id_categoria }}" name="form_id_categoria">{{ item.nome_categoria }}</option>
+                    {% endfor %}
+                </select>
+                <button><a>Adicionar</a></button>
+                <a href="{{ url_for('produto') }}">
+                    <button>Cancelar</button>
+                </a>
+            </form>
+        </div>
+
+{% endblock conteudo %}

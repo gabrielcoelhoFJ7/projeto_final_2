@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+    <div class="formulario">
+        <h2>Editar Produto</h2>
+        <form action="{{ url_for('editar_produto', id_produto=produto.id_produto) }}" method="POST">
+            <label for="form_nome_produto">Nome do Produto:</label>
+            <input type="text" id="form_nome_produto" name="form_nome_produto" value="{{ produto.nome_produto }}"
+                   required>
+
+            <label for="form_preco_produto">Preço:</label>
+            <input type="text" id="form_preco_produto" name="form_preco_produto" value="{{ produto.preco_produto }}"
+                   required>
+
+            <label for="form_quantidade">Quantidade:</label>
+            <input type="text" id="form_quantidade" name="form_quantidade" value="{{ produto.qtd }}"
+                   required>
+
+            <label for="form_categoria_produto">Categoria:</label>
+            <select id="form_categoria_produto" name="form_categoria_produto" required style="margin-bottom:50px;"
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id_categoria }}"
+                        {% if categoria.id_categoria == produto.id_categoria %}selected{% endif %}>
+                    {{ categoria.nome_categoria }}
+                </option>
+            {% endfor %}
+            </select>
+
+
+            <button type="submit">Salvar Alterações</button>
+        </form>
+    </div>
+
+{% endblock conteudo %}

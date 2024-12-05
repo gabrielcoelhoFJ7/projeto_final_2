@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+    <h1>Lista de Categorias</h1>
+
+    {% for item in cavalo %}
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ item.nome_categoria }}</h2>
+                <span class="product-id">#{{ item.id_categoria }}</span>
+            </div>
+                <span class="product-id" style="margin-left: 96%;"><a
+            href="{{ url_for('editar_categoria', id_categoria=item.id_categoria) }}"
+            class="btn-edit">Editar</a></span>
+        </div>
+    {% endfor %}
+
+
+        <label class="ordem_" for="ordem">Ordenar por:</label>
+    <select class="ordem" id="ordem" onchange="location = this.value;">
+        <option value="{{ url_for('categoria', pagina=pagina_atual, ordem='id_categoria_desc') }}"
+                {% if ordem == 'id_categoria_desc' %}selected{% endif %}>ID (decrescente)
+        </option>
+        <option value="{{ url_for('categoria', pagina=pagina_atual, ordem='id_categoria_asc') }}"
+                {% if ordem == 'id_categoria_asc' %}selected{% endif %}>ID (crescente)
+        </option>
+        <option value="{{ url_for('categoria', pagina=pagina_atual, ordem='nome_asc') }}"
+                {% if ordem == 'nome_asc' %}selected{% endif %}>Categoria (A-Z)
+        </option>
+        <option value="{{ url_for('categoria', pagina=pagina_atual, ordem='nome_desc') }}"
+                {% if ordem == 'nome_desc' %}selected{% endif %}>Categoria (Z-A)
+        </option>
+    </select>
+
+    <!-- Botões de navegação -->
+    <div class="pagination">
+        {% if pagina_atual > 1 %}
+            <a href="{{ url_for('categoria', pagina=pagina_atual - 1, ordem=ordem) }}">Página Anterior</a>
+        {% endif %}
+        {% if pagina_atual < total_paginas %}
+            <a href="{{ url_for('categoria', pagina=pagina_atual + 1, ordem=ordem) }}">Próxima Página</a>
+        {% endif %}
+    </div>
+
+    <style>
+        .product-id {
+            font-size: 0.9em;
+            color: #666;
+            background-color: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 12px;
+            white-space: nowrap; /* Evita quebra de linha */
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+    </style>
+
+{% endblock conteudo %}

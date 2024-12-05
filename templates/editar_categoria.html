@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<div class="formulario">
+    <h2>Editar Categoria</h2>
+    <form action="{{ url_for('editar_categoria', id_categoria=categoria.id_categoria) }}" method="POST">
+        <label for="form_nome_categoria">Nome da Categoria:</label>
+        <input type="text" id="form_nome_categoria" name="form_nome_categoria" value="{{ categoria.nome_categoria }}" required>
+        <br><br>
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+</div>
+
+{% endblock conteudo %}

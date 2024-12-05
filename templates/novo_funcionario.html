@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <div class="formulario">
+        <form action="{{ url_for('novo_funcionario') }}" method="POST">
+            <label>Nome do Funcionario</label>
+            <input type="text" name="form_nome_funcionario">
+            <label>Sobrenome do Funcionario</label>
+            <input type="text" name="form_sobrenome_funcionario">
+            <label>Email do Funcionario</label>
+            <input type="text" name="form_email_funcionario">
+            <label>CPF do Funcionario</label>
+            <input type="text" name="form_cpf_funcionario">
+            <label>Telefone do Funcionario</label>
+            <input type="text" name="form_telefone_funcionario">
+            <button><a>Adicionar</a></button>
+            <a href="{{ url_for('funcionario') }}">
+                <button>Cancelar</button>
+            </a>
+        </form>
+    </div>
+{% endblock conteudo %}

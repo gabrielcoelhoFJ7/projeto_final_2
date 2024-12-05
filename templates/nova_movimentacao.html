@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+    <div class="formulario">
+        <h1>Nova Movimentação</h1>
+        <form action="{{ url_for('nova_movimentacao') }}" method="POST">
+
+            <label>Fornecedor:</label>
+            <input type="text" name="form_fornecedor" required>
+
+            <label>Funcionário:</label>
+            <select class="box_large" name="form_id_funcionario" required>
+                <option value="">Selecione um funcionário</option>
+                {% for funcionario in funcionarios %}
+                    <option value="{{ funcionario.id_funcionario }}">{{ funcionario.nome_funcionario }} {{ funcionario.sobrenome }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Produto:</label>
+            <select class="box_large" name="form_id_produto" required>
+                <option value="">Selecione um produto</option>
+                {% for produto in produtos %}
+                    <option value="{{ produto.id_produto }}">{{ produto.nome_produto }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Status:</label>
+            <select name="form_status" required>
+                <option value="">Selecione um status</option>
+                <option value="1">Entrada</option>
+                <option value="0">Saída</option>
+            </select>
+
+            <label>Quantidade:</label>
+            <input class="input" type="number" name="form_quantidade" required>
+
+            <button type="submit">Adicionar</button>
+            <a href="{{ url_for('movimentacao') }}">
+                <button type="button">Cancelar</button>
+            </a>
+        </form>
+
+        <!-- Exibir mensagens de erro ou sucesso -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+{% endblock conteudo %}

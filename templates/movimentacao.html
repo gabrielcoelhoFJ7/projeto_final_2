@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <div class="dashboard">
+        <h1>Lista de Movimentações</h1>
+
+        <!-- Grid de Produtos -->
+        <div class="product-grid">
+            {% for m ,f ,p in cavalo %}
+                <div class="card product-card">
+                    <div class="card-header">
+                        <h3>{{ p.nome_produto }}</h3>
+                        <span class="product-id">#{{ m.id_movimentacao }}</span>
+                    </div>
+                    <p><strong>Quantidade:</strong> {{ m.quantidade_produto }}</p>
+                    <p><strong>Fornecedor:</strong> {{ m.fornecedor }}</p>
+                    <p><strong>Funcionário:</strong> {{ f.nome_funcionario }} {{ f.sobrenome }}</p>
+                    <p><strong>Status:</strong> {{ 'Saída' if m.status == 0 else 'Entrada' }}</p>
+                    <p><strong>Data:</strong> {{ m.data_da_movimentacao }}</p>
+                    <br>
+                    <span class="product-id" style="margin-left: 170px;"><a
+                            href="{{ url_for('editar_movimentacao', id_movimentacao=m.id_movimentacao) }}"
+                            class="btn-edit">Editar</a></span>
+
+                </div>
+            {% endfor %}
+        </div>
+
+        <label class="ordem_" for="ordem">Ordenar por:</label>
+        <select class="ordem" id="ordem" onchange="location = this.value;">
+            <option value="{{ url_for('movimentacao', pagina=pagina_atual, ordem='id_movimentacao_desc') }}"
+                    {% if ordem == 'id_movimentacao_desc' %}selected{% endif %}>ID (decrescente)
+            </option>
+            <option value="{{ url_for('movimentacao', pagina=pagina_atual, ordem='id_movimentacao_asc') }}"
+                    {% if ordem == 'id_movimentacao_asc' %}selected{% endif %}>ID (crescente)
+            </option>
+            <option value="{{ url_for('movimentacao', pagina=pagina_atual, ordem='nome_asc') }}"
+                    {% if ordem == 'nome_asc' %}selected{% endif %}>Produto (A-Z)
+            </option>
+            <option value="{{ url_for('movimentacao', pagina=pagina_atual, ordem='nome_desc') }}"
+                    {% if ordem == 'nome_desc' %}selected{% endif %}>Produto (Z-A)
+            </option>
+            <option value="{{ url_for('movimentacao', pagina=pagina_atual, ordem='data_desc') }}"
+                    {% if ordem == 'data_desc' %}selected{% endif %}>Data (Recente)
+            </option>
+            <option value="{{ url_for('movimentacao', pagina=pagina_atual, ordem='data_asc') }}"
+                    {% if ordem == 'data_asc' %}selected{% endif %}>Data (Antiga)
+            </option>
+            <option value="{{ url_for('movimentacao', pagina=pagina_atual, ordem='preco_asc') }}"
+                    {% if ordem == 'preco_asc' %}selected{% endif %}>Preço (Crescente)
+            </option>
+            <option value="{{ url_for('movimentacao', pagina=pagina_atual, ordem='preco_desc') }}"
+                    {% if ordem == 'preco_desc' %}selected{% endif %}>Preço (Decrescente)
+            </option>
+        </select>
+
+        <!-- Botões de navegação -->
+        <div class="pagination">
+            {% if pagina_atual > 1 %}
+                <a href="{{ url_for('movimentacao', pagina=pagina_atual - 1, ordem=ordem) }}">Página Anterior</a>
+            {% endif %}
+            {% if pagina_atual < total_paginas %}
+                <a href="{{ url_for('movimentacao', pagina=pagina_atual + 1, ordem=ordem) }}">Próxima Página</a>
+            {% endif %}
+        </div>
+    </div>
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .product-id {
+            font-size: 0.9em;
+            color: #666;
+            background-color: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 12px;
+            white-space: nowrap; /* Evita quebra de linha */
+        }
+
+        .product-card p {
+            margin-top: 15px;
+        }
+
+    </style>
+{% endblock conteudo %}

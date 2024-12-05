@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <h1>Lista de Produtos</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th style="padding: 5px 1px; text-align: center;">Editar</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item1, item2 in cavalo %}
+            <tr>
+                <td>{{ item1.id_produto }}</td>
+                <td>{{ item1.nome_produto }}</td>
+                <td>{{ item1.qtd }}</td>
+                <td>R$ {{ item1.preco_produto }}</td>
+                <td>{{ item2.nome_categoria }}</td>
+                <td style="padding: 5px 1px; text-align: center;"><a
+                        href="{{ url_for('editar_produto', id_produto=item1.id_produto) }}"><img
+                        src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png"
+                        style="height: 25px; width: 25px;"></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <label class="ordem_" for="ordem">Ordenar por:</label>
+    <select class="ordem" id="ordem" onchange="location = this.value;">
+        <option value="{{ url_for('produto', pagina=pagina_atual, ordem='id_produto_desc') }}"
+                {% if ordem == 'id_produto_desc' %}selected{% endif %}>ID (decrescente)
+        </option>
+        <option value="{{ url_for('produto', pagina=pagina_atual, ordem='id_produto_asc') }}"
+                {% if ordem == 'id_produto_asc' %}selected{% endif %}>ID (crescente)
+        </option>
+        <option value="{{ url_for('produto', pagina=pagina_atual, ordem='nome_asc') }}"
+                {% if ordem == 'nome_asc' %}selected{% endif %}>Nome (A-Z)
+        </option>
+        <option value="{{ url_for('produto', pagina=pagina_atual, ordem='nome_desc') }}"
+                {% if ordem == 'nome_desc' %}selected{% endif %}>Nome (Z-A)
+        </option>
+    </select>
+
+    <!-- Botões de navegação -->
+    <div class="pagination">
+        {% if pagina_atual > 1 %}
+            <a href="{{ url_for('produto', pagina=pagina_atual - 1, ordem=ordem) }}">Página Anterior</a>
+        {% endif %}
+        {% if pagina_atual < total_paginas %}
+            <a href="{{ url_for('produto', pagina=pagina_atual + 1, ordem=ordem) }}">Próxima Página</a>
+        {% endif %}
+    </div>
+
+{% endblock conteudo %}
+

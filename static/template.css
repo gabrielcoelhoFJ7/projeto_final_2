@@ -1,0 +1,442 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos globais */
+body, html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5; /* Fundo mais suave e moderno */
+    color: #333333; /* Cor de texto mais neutra */
+}
+
+select {
+    width: 200px; /* Largura do select */
+    padding: 10px; /* Preenchimento interno */
+    border: 1px solid #ccc; /* Borda cinza clara */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    appearance: none; /* Remove a aparência padrão do select */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>'); /* Adiciona um ícone de seta */
+    background-repeat: no-repeat; /* Não repete a imagem de fundo */
+    background-position: right 10px center; /* Posiciona a imagem à direita */
+    background-size: 12px; /* Tamanho do ícone */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transições suaves */
+    display: block; /* Exibição em bloco */
+    margin-bottom: 20px; /* Margem inferior */
+}
+
+select:focus {
+    border-color: #007bff; /* Cor da borda ao focar (azul) */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Opcional: Estilo para desabilitar o select */
+select:disabled {
+    background-color: #e9ecef; /* Cor de fundo para desabilitado */
+    border-color: #ced4da; /* Borda para desabilitado */
+    color: #6c757d; /* Cor do texto para desabilitado */
+}
+
+.box_large {
+    width: 225px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.select {
+    margin-bottom: 40px;
+}
+
+option {
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #1e2a38;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff6b6b;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #283f56;
+    padding: 20px 0;
+    text-align: left;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: inline-block;
+    width: 20vw;
+    text-align: center;
+}
+
+.icones {
+    display: inline-block;
+    width: 38vw;
+    /*width: 20vw;*/
+    margin-right: 20px;
+    text-align: right;
+}
+
+.icone {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+header a {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 16px;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+/* Conteúdo principal */
+main {
+    padding: 40px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+main h1 {
+    color: #1e2a38;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+header h1 {
+    color: #ffffff;
+    font-weight: 600;
+    display: inline-block;
+
+}
+
+h2 {
+    color: #1e2a38;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+h3 {
+    color: #1e2a38;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Cartões */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    margin: 20px 0;
+    padding: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #1e2a38;
+}
+
+.card p {
+    color: #666666;
+}
+
+/* Formulário */
+.formulario {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #1e2a38;
+}
+
+/* Estilo geral para inputs de texto, email e password */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* Largura total do contêiner pai */
+    padding: 15px; /* Preenchimento interno */
+    margin-bottom: 25px; /* Margem inferior */
+    border: 1px solid #ccc; /* Borda cinza clara */
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transições suaves */
+}
+
+
+
+/* Estilo ao focar nos inputs */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #ff6b6b; /* Cor da borda ao focar (vermelho) */
+    box-shadow: 0 0 5px rgba(255, 107, 107, 0.5); /* Sombra ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Estilo para o input de quantidade */
+.input {
+    display: block; /* Exibição em bloco */
+    margin-bottom: 40px; /* Margem inferior */
+    width: 80px; /* Largura específica para o input de quantidade */
+    padding: 10px; /* Preenchimento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    border: 2px solid #ccc; /* Borda cinza clara */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transições suaves */
+}
+
+input {
+    display: block; /* Exibição em bloco */
+    margin-bottom: 20px; /* Margem inferior */
+    padding: 10px; /* Preenchimento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    border: 2px solid #ccc; /* Borda cinza clara */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transições suaves */
+}
+
+/* Estilo ao focar no input de quantidade */
+.input:focus {
+    border-color: #007bff; /* Cor da borda ao focar (azul) */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Estilo para inputs desabilitados */
+input:disabled, .input:disabled {
+    background-color: #e9ecef; /* Cor de fundo para desabilitado */
+    border-color: #ced4da; /* Borda para desabilitado */
+    color: #6c757d; /* Cor do texto para desabilitado */
+}
+
+/* Botões */
+button {
+    background-color: #1e2a38;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff6b6b;
+    color: black;
+
+}
+
+button a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+button:hover {
+    color: #1e2a38;
+}
+
+
+/* Paginação */
+.pagination {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 12px 18px;
+    margin: 0 8px;
+    background-color: #1e2a38;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.pagination a:hover {
+    background-color: #ff6b6b;
+}
+
+
+/* Mensagens flash */
+.flash-messages {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.flash-message {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Estilos para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Escondido inicialmente */
+    width: 300px;
+    height: 100%;
+    background-color: #ffffff; /* Cor de fundo da barra lateral */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+    border-radius: 0 10px 10px 0; /* Bordas arredondadas do lado direito */
+    transition: right 0.3s ease;
+    padding: 20px;
+    z-index: 1000; /* Garante que a barra lateral esteja acima de outros elementos */
+}
+
+.sidebar.active {
+    right: 0; /* Mostra a aba */
+}
+
+/* Estilo dos links na barra lateral */
+.sidebar a {
+    display: block;
+    padding: 10px 15px; /* Espaçamento interno */
+    margin: 10px 0; /* Margem entre os links */
+    color: #1e2a38; /* Cor do texto */
+    border-radius: 5px; /* Bordas arredondadas para os links */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.sidebar a:hover {
+    background-color: #ff6b6b; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
+}
+
+/* Estilo do botão de fechar */
+.botao-fechar {
+    position: absolute;
+    bottom: 20px; /* Distância do fundo */
+    right: 20px; /* Distância da direita */
+    background-color: #ff6b6b; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    border: none; /* Remove bordas */
+    border-radius: 8px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.botao-fechar:hover {
+    background-color: #ff4c4c; /* Cor de fundo ao passar o mouse */
+}
+
+
+.icones.reduzidos {
+    width: 18vw; /* Ou o valor que você preferir */
+}
+
+.nome, .cargo {
+    text-align: left;
+    font-size: 13px;
+}
+
+.nome-cargo {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: default;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    nav {
+        width: 200px;
+    }
+
+    main {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    main {
+        margin-left: 0;
+    }
+}
+
+

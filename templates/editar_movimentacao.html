@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+    <div class="formulario">
+        <h2>Editar Movimentação</h2>
+        <form action="{{ url_for('editar_movimentacao', id_movimentacao=movimentacao.id_movimentacao) }}" method="POST">
+
+            <label>Fornecedor:</label>
+            <input type="text" name="form_fornecedor" value="{{ movimentacao.fornecedor }}" required>
+
+            <label>Funcionário:</label>
+            <select class="box_large" name="form_id_funcionario" required>
+                <option value="">Selecione um funcionário</option>
+                {% for funcionario in funcionarios %}
+                    <option value="{{ funcionario.id_funcionario }}"
+                            {% if funcionario.id_funcionario == movimentacao.id_funcionario %}selected{% endif %}>
+                        {{ funcionario.nome_funcionario }} {{ funcionario.sobrenome }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label>Produto:</label>
+            <select class="box_large" name="form_id_produto" required>
+                <option value="">Selecione um produto</option>
+                {% for produto in produtos %}
+                    <option value="{{ produto.id_produto }}"
+                            {% if produto.id_produto == movimentacao.id_produto %}selected{% endif %}>
+                        {{ produto.nome_produto }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label>Status:</label>
+            <select name="form_status" required>
+                <option value="">Selecione um status</option>
+                <option value="Entrada" {% if movimentacao.status == 'Entrada' %}selected{% endif %}>Entrada</option>
+                <option value="Saída" {% if movimentacao.status == 'Saída' %}selected {% endif %}>Saída</option>
+            </select>
+
+            <label>Quantidade:</label>
+            <input class="input" type="number" name="form_quantidade" value="{{ produto.quantidade_produto }}"
+                   required>
+
+            <button type="submit">Salvar Alterações</button>
+        </form>
+    </div>
+{% endblock conteudo %}

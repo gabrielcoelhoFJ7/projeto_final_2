@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+    <h1>Lista de Funcionários</h1>
+
+    {% for item in cavalo %}
+        <div class="card">
+            <div class="card-header">
+                <h3>{{ item.nome_funcionario }} {{ item.sobrenome }}</h3>
+                <span class="product-id">#{{ item.id_funcionario }}</span>
+            </div>
+            <p>CPF: {{ item.cpf }}</p>
+            <p>email: {{ item.email }}</p>
+            <p>Telefone: {{ item.telefone }}</p>
+            <p>Data de cadastro: {{ item.data_de_cadastro }}</p>
+            <span class="product-id" style="margin-left: 96%;"><a
+                    href="{{ url_for('editar_funcionario', id_funcionario=item.id_funcionario) }}"
+                    class="btn-edit">Editar</a></span>
+        </div>
+    {% endfor %}
+
+    <label class="ordem_" for="ordem">Ordenar por:</label>
+    <select class="ordem" id="ordem" onchange="location = this.value;">
+        <option value="{{ url_for('funcionario', pagina=pagina_atual, ordem='id_funcionario_desc') }}"
+                {% if ordem == 'id_funcionario_desc' %}selected{% endif %}>ID (decrescente)
+        </option>
+        <option value="{{ url_for('funcionario', pagina=pagina_atual, ordem='id_funcionario_asc') }}"
+                {% if ordem == 'id_funcionario_asc' %}selected{% endif %}>ID (crescente)
+        </option>
+        <option value="{{ url_for('funcionario', pagina=pagina_atual, ordem='nome_asc') }}"
+                {% if ordem == 'nome_asc' %}selected{% endif %}>Nome (A-Z)
+        </option>
+        <option value="{{ url_for('funcionario', pagina=pagina_atual, ordem='nome_desc') }}"
+                {% if ordem == 'nome_desc' %}selected{% endif %}>Nome (Z-A)
+        </option>
+    </select>
+
+    <!-- Botões de navegação -->
+    <div class="pagination">
+        {% if pagina_atual > 1 %}
+            <a href="{{ url_for('funcionario', pagina=pagina_atual - 1, ordem=ordem) }}">Página Anterior</a>
+        {% endif %}
+        {% if pagina_atual < total_paginas %}
+            <a href="{{ url_for('funcionario', pagina=pagina_atual + 1, ordem=ordem) }}">Próxima Página</a>
+        {% endif %}
+    </div>
+    <style>
+        .product-id {
+            font-size: 0.9em;
+            color: #666;
+            background-color: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 12px;
+            white-space: nowrap; /* Evita quebra de linha */
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
+{% endblock conteudo %}

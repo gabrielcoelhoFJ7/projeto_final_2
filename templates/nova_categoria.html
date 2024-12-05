@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <div class="formulario">
+        <form action="{{ url_for('nova_categoria') }}" method="POST">
+            <label>Nome da Categoria</label>
+            <input type="text" name="form_nome_categoria">
+            <button><a>Adicionar</a></button>
+            <a href="{{ url_for('categoria') }}">
+                <button>Cancelar</button>
+            </a>
+        </form>
+    </div>
+{% endblock conteudo %}

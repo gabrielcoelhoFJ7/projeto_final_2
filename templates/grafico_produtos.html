@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <h1>Gráfico de Produtos</h1>
+
+    <!-- Dropdown para selecionar o tipo de gráfico -->
+    <div style="margin-bottom: 20px;">
+        <label for="tipo_grafico">Escolha o tipo de gráfico:</label>
+        <select id="tipo_grafico" onchange="atualizarGrafico()">
+            <option value="bar" {% if request.args.get('tipo_grafico') == 'bar' %}selected{% endif %}>Gráfico de Barras</option>
+            <option value="line" {% if request.args.get('tipo_grafico') == 'line' %}selected{% endif %}>Gráfico de Linha</option>
+            <option value="pie" {% if request.args.get('tipo_grafico') == 'pie' %}selected{% endif %}>Gráfico de Pizza</option>
+            <option value="scatter" {% if request.args.get('tipo_grafico') == 'scatter' %}selected{% endif %}>Gráfico de Dispersão</option>
+            <option value="area" {% if request.args.get('tipo_grafico') == 'area' %}selected{% endif %}>Gráfico de Área</option>
+        </select>
+    </div>
+
+
+        {{ plot_html|safe }}
+
+
+
+
+
+    <!-- Script JavaScript para atualizar o gráfico -->
+    <script>
+        function atualizarGrafico() {
+            const tipoGrafico = document.getElementById('tipo_grafico').value;
+            window.location.href = `/produto/grafico?tipo_grafico=${tipoGrafico}`;
+        }
+    </script>
+
+{% endblock conteudo %}

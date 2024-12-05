@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EstoquePro - A platform for stock products and manage employees.">
+    <meta name="keywords" content="Stock Control, Products, Employees, Sales">
+    <title>EstoquePro</title>
+    <link rel="stylesheet" href="../static/template.css">
+    <style>
+        /* Adiciona uma classe para esconder o texto */
+        .hidden-text {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="{{ url_for('produto') }}">Produtos</a>
+        <a href="{{ url_for('funcionario') }}">Funcionários</a>
+        <a href="{{ url_for('movimentacao') }}">Movimentações</a>
+        <a href="{{ url_for('categoria') }}">Categorias</a>
+        <div class="logo" style="cursor: pointer;"><a href="{{ url_for('dashboard') }}"><h1>EstoquePro</h1></a></div>
+        <div class="icones">
+            <div style="cursor: pointer;" class="icone" id="toggleButton">
+                <img src="/static/add.png" alt="" style="width: 25px; height: 25px;">
+            </div>
+            <div class="icone">
+                <img src="/static/perfil.png" alt="" style="width: 25px; height: 25px;">
+            </div>
+            <div class="nome-cargo">
+                <p class="nome">Gabriel Coêlho</p>
+                <p class="cargo">Admin</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="flash-messages">
+        {%- for mensagem in get_flashed_messages() %}
+            <div class="flash-message">
+                {{ mensagem }}
+                <button class="close-button" onclick="this.parentElement.style.display='none';">X</button>
+            </div>
+        {%- endfor %}
+    </div>
+    <div id="sidebar" class="sidebar">
+        <h2>Cadastro</h2>
+        <a href="{{ url_for('novo_funcionario') }}">Cadastrar Funcionários</a>
+        <a href="{{ url_for('novo_produto') }}">Cadastrar Produtos</a>
+        <a href="{{ url_for('nova_movimentacao') }}">Cadastrar Movimentações</a>
+        <a href="{{ url_for('nova_categoria') }}">Cadastrar Categoria</a>
+        <h2>Insights</h2>
+        <a href="{{ url_for('produto_grafico') }}">Gráfico de Produtos</a>
+        <button id="closeButton" class="botao-fechar">Fechar</button>
+    </div>
+
+    {% block conteudo %}
+    {% endblock %}
+</main>
+
+<script>
+    document.getElementById('toggleButton').addEventListener('click', function () {
+        const sidebar = document.getElementById('sidebar');
+        const body = document.body;
+        const icones = document.querySelector('.icones'); // Seleciona os ícones
+        const textElements = document.querySelectorAll('.nome-cargo'); // Seleciona os elementos de texto
+
+        sidebar.classList.toggle('active');
+
+        if (sidebar.classList.contains('active')) {
+            body.style.marginRight = '300px'; // Empurra o conteúdo da página
+            icones.classList.add('reduzidos'); // Adiciona a classe que reduz a largura
+            textElements.forEach(el => el.classList.add('hidden-text')); // Esconde o texto
+        } else {
+            body.style.marginRight = '0'; // Retorna o conteúdo ao normal
+            icones.classList.remove('reduzidos'); // Remove a classe que reduz a largura
+            textElements.forEach(el => el.classList.remove('hidden-text')); // Mostra o texto
+        }
+    });
+
+    document.getElementById('closeButton').addEventListener('click', function () {
+        const sidebar = document.getElementById('sidebar');
+        const body = document.body;
+        const icones = document.querySelector('.icones'); // Seleciona os ícones
+        const textElements = document.querySelectorAll('header a, header .nome-cargo'); // Seleciona os elementos de texto
+
+        sidebar.classList.remove('active');
+        body.style.marginRight = '0'; // Retorna o conteúdo ao normal
+        icones.classList.remove('reduzidos'); // Remove a classe que reduz a largura
+        textElements.forEach(el => el.classList.remove('hidden-text')); // Mostra o texto
+    });
+</script>
+</body>
+</html>
