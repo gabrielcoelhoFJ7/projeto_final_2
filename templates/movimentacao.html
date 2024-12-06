@@ -18,9 +18,6 @@
                     <p><strong>Status:</strong> {{ 'Saída' if m.status == 0 else 'Entrada' }}</p>
                     <p><strong>Data:</strong> {{ m.data_da_movimentacao }}</p>
                     <br>
-                    <span class="product-id" style="margin-left: 170px;"><a
-                            href="{{ url_for('editar_movimentacao', id_movimentacao=m.id_movimentacao) }}"
-                            class="btn-edit">Editar</a></span>
 
                 </div>
             {% endfor %}

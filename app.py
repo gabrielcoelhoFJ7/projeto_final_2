@@ -457,40 +457,6 @@ def nova_movimentacao():
                            produtos=lista_produtos)
 
 
-@app.route('/editar_movimentacao/<int:id_movimentacao>', methods=['GET', 'POST'])
-def editar_movimentacao(id_movimentacao):
-    lista_funcionarios = db_session.execute(select(Funcionario)).scalars().all()
-    lista_produtos = db_session.execute(select(Produto)).scalars().all()
-    movimentacao = db_session.query(Movimentacao).filter_by(id_movimentacao=id_movimentacao).first()
-
-    if not movimentacao:
-        flash("Movimentação não encontrada.", "error")
-        return redirect(url_for('movimentacao'))
-
-    if request.method == "POST":
-        try:
-            # Atualiza os dados da movimentação
-            movimentacao.quantidade_produto = request.form["form_quantidade"]
-            movimentacao.fornecedor = request.form["form_fornecedor"]
-            movimentacao.status = request.form["form_status"]
-            movimentacao.id_funcionario = request.form["form_id_funcionario"]
-            movimentacao.id_produto = request.form["form_id_produto"]
-
-            db_session.commit()
-            flash("Movimentação atualizada com sucesso!", "success")
-            return redirect(url_for('movimentacao'))
-        except Exception as e:
-            db_session.rollback()
-            flash(f"Erro ao atualizar a movimentação: {str(e)}", "error")
-
-    # Renderiza o formulário com os dados existentes
-    return render_template("editar_movimentacao.html",
-                           movimentacao=movimentacao,
-                           funcionarios=lista_funcionarios,
-                           produtos=lista_produtos
-                           )
-
-
 @app.route('/categoria', methods=['GET'])
 def categoria():
     por_pagina = 5
